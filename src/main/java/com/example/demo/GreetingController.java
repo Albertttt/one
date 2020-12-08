@@ -1,8 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.example.demo.pojo.Greeting;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,5 +15,10 @@ public class GreetingController {
     @GetMapping("/greeting")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
+    }
+
+    @LogExecutionTime
+    public String composeFullName(String firstName, String lastName) {
+        return firstName + lastName;
     }
 }
